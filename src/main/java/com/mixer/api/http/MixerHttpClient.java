@@ -78,7 +78,10 @@ public class MixerHttpClient {
         String proxyHost = System.getProperty(PROXY_HOST_PROP);
         String proxyPort = System.getProperty(PROXY_PORT_PROP);
 
-        HttpClientBuilder builder = HttpClientBuilder.create().setDefaultCookieStore(this.cookieStore);
+        HttpClientBuilder builder = HttpClientBuilder.create()
+        		.setDefaultRequestConfig(RequestConfig.custom()
+        				.setCookieSpec(CookieSpecs.STANDARD).build())
+        		.setDefaultCookieStore(this.cookieStore);
 
         if (proxyHost != null && proxyPort != null) {
             builder.setProxy(new HttpHost(proxyHost, Integer.parseInt(proxyPort)));
@@ -143,7 +146,7 @@ public class MixerHttpClient {
      */
     private HttpUriRequest makeRequest(RequestType requestType, URI uri, Object... args) {
         RequestConfig.Builder config = RequestConfig.copy(RequestConfig.DEFAULT);
-        config.setCookieSpec(CookieSpecs.BEST_MATCH);
+        config.setCookieSpec(CookieSpecs.STANDARD);
 
         RequestBuilder requestBuilder = RequestBuilder.create(requestType.name())
                              .setUri(uri)
