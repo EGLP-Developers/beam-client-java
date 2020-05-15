@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.eglp</groupId>
-    <artifactId>api</artifactId>
+    <artifactId>mixer-api</artifactId>
     <version>6.0.1</version>
 
     <licenses>
