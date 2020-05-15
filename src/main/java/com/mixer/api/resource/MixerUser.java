@@ -21,6 +21,7 @@ public class MixerUser implements Serializable {
     public Date updatedAt;
     public String username;
     public boolean verified;
+    public String avatarUrl;
     public ArrayList<MixerResource> avatars;
 
     public enum Role {
